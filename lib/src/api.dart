@@ -7,8 +7,8 @@ class Api {
   String get({
     String? order = 'desc',
     String? sort = 'activity',
-    int pageSize = 10,
+    int? limit = 5
   }) {
-    return '${questions}pagesize=$pageSize&order=$order&sort=$sort&site=stackoverflow';
+    return '${questions}pagesize=$limit&order=$order&sort=$sort&site=stackoverflow';
   }
 }

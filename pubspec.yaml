@@ -1,7 +1,7 @@
 name: scli
 description: >
-  A command line application for StackOverflow.
-  We can call it - "StackOverflow under your fingers"
+  A command line application for StackOverflow. We can call it - "StackOverflow
+  under your fingers"
 version: 1.0.0
 homepage: https://github.com/theiskaa/stackoverflow_cli
 

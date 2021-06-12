@@ -101,20 +101,25 @@ class Logger {
     return stdin.readLineSync() ?? '';
   }
 
-  void question(Question question, var questionLength) {
-    var validQuestionLength = questionLength ?? 5;
-    for (var i = 0; i < validQuestionLength; i++) {
+  void question(Question question, [var questionLength = 5]) {
+    for (var i = 0; i < questionLength; i++) {
       var id = '${lightYellow.wrap('@${question.items![i].questionId}')}';
       var title = '${lightGreen.wrap('"${question.items![i].title}"')}';
+      var link = '${lightBlue.wrap('${question.items![i].link}')}';
       line();
-      stdout.write('$id - $title');
-      line();
+      stdout.write(
+        '''
+      $id - $title
+
+      See more: $link
+        ''',
+      );
     }
   }
 
   void line() {
     empty();
-    stdout.write('-----------------------------');
+    stdout.write('---------------------------------------------');
     empty();
   }
 
