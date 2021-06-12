@@ -103,6 +103,13 @@ class Logger {
   }
 
   void question(Question question, [var questionLength = 5]) {
+    var rightTermine = questionLength > 1 ? 'questions' : 'question';
+    stdout.write(
+      '''
+
+    ${lightMagenta.wrap('Found $questionLength $rightTermine:')}
+    ''',
+    );
     for (var i = 0; i < questionLength; i++) {
       var id = '${lightYellow.wrap('@${question.items![i].questionId}')}';
       var title = '${lightGreen.wrap('"${question.items![i].title}"')}';

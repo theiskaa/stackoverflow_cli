@@ -2,9 +2,10 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:io/io.dart';
 
+import 'commands/get.dart';
+import 'sc_command_helper.dart';
+import 'commands/search.dart';
 import 'version.dart';
-import 'commands/get/get.dart';
-import 'commands/sc_command.dart';
 
 /// SCLI command runner have been using for cli runnin'.
 class CLICommandRunner extends CommandRunner<int?> with SCLIcommandHelper {
@@ -23,6 +24,7 @@ class CLICommandRunner extends CommandRunner<int?> with SCLIcommandHelper {
 
     // Set available commands.
     addCommand(Get());
+    addCommand(Search());
   }
 
   @override
