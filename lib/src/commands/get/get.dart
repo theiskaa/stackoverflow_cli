@@ -18,6 +18,10 @@ class Get extends Command<int?> with SCLIcommandHelper {
         'limit',
         abbr: 'l',
         help: 'Get questions by providing custom limit',
+      )
+      ..addOption(
+        'id',
+        help: 'Get concrete question by id',
       );
   }
 
@@ -33,21 +37,27 @@ class Get extends Command<int?> with SCLIcommandHelper {
 
   @override
   FutureOr<int?> run() async {
-    log.progress('Loading newest questions');
+    log.progress('Loading questions');
+    var limit;
+    var id;
 
     // Detect right question limit.
-    var limit = argResults?['all']
-        ? 100
-        : (argResults?['limit'] != null)
-            ? int.parse(argResults?['limit'])
-            : 5;
-
-    await getQuestions(limit);
+    if (argResults?['id'] != null) {
+      limit = 1;
+      id = int.parse(argResults?['id']);
+    } else {
+      limit = argResults?['all']
+          ? 100
+          : (argResults?['limit'] != null)
+              ? int.parse(argResults?['limit'])
+              : 5;
+    }
+    await getQuestions(limit, id);
     ExitCode.success.code;
   }
 
-  Future<void> getQuestions([int? limit = 5]) async {
-    final res = await dio.get(api.get(limit: limit));
+  Future<void> getQuestions([int? limit = 5, int? id]) async {
+    final res = await dio.get(api.get(limit: limit, id: id));
     var question = Question.fromJson(res.data);
     log.question(question, limit);
   }

@@ -7,8 +7,12 @@ class Api {
   String get({
     String? order = 'desc',
     String? sort = 'activity',
-    int? limit = 5
+    int? limit = 5,
+    int? id,
   }) {
+    if (id != null) {
+      return '${questions.replaceAll('?', '/')}$id?order=$order&sort=$sort&site=stackoverflow';
+    }
     return '${questions}pagesize=$limit&order=$order&sort=$sort&site=stackoverflow';
   }
 }
