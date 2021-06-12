@@ -26,7 +26,8 @@ class Logger {
     '-~',
     '~',
     '-~',
-    '~'
+    '~',
+    '-'
   ];
 
   final _queue = <String?>[];
@@ -106,11 +107,12 @@ class Logger {
       var id = '${lightYellow.wrap('@${question.items![i].questionId}')}';
       var title = '${lightGreen.wrap('"${question.items![i].title}"')}';
       var link = '${lightBlue.wrap('${question.items![i].link}')}';
+      var tags = '${lightCyan.wrap('${question.items?[i].tags}')}';
       line();
       stdout.write(
         '''
       $id - $title
-
+      Tags: $tags
       See more: $link
         ''',
       );

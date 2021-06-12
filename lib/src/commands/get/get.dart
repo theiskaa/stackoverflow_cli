@@ -14,6 +14,11 @@ class Get extends Command<int?> with SCLIcommandHelper {
         help: 'Get all(100) questions',
         defaultsTo: false,
       )
+      ..addMultiOption(
+        'tag',
+        abbr: 't',
+        help: "Get questions by providing language/tool 's tags",
+      )
       ..addOption(
         'limit',
         abbr: 'l',
@@ -27,8 +32,8 @@ class Get extends Command<int?> with SCLIcommandHelper {
 
   @override
   String get description => '''
-  Get newest questions. As default would get exectly 5 question.
-  To get more or less use limits.
+  Get newest questions. As default would get exectly 5 question from general questions timeline.
+  To get more or less use "limit" option, or to get questions about concrete language/tool use "tag" option, or to get question by id use "id" option.
   Run "scli help get" to learn more about limits.
   ''';
 
@@ -38,26 +43,40 @@ class Get extends Command<int?> with SCLIcommandHelper {
   @override
   FutureOr<int?> run() async {
     log.progress('Loading questions');
+
     var limit;
     var id;
+    List<String>? tags;
 
-    // Detect right question limit.
+    // Detect right question limit and id.
     if (argResults?['id'] != null) {
       limit = 1;
       id = int.parse(argResults?['id']);
     } else {
+      print(argResults?['tag']);
+
+      // Set right question tags.
+      if (argResults?['tag'].isNotEmpty) {
+        tags = argResults?['tag'];
+      }
+
       limit = argResults?['all']
           ? 100
           : (argResults?['limit'] != null)
               ? int.parse(argResults?['limit'])
               : 5;
     }
-    await getQuestions(limit, id);
+
+    await getQuestions(limit, id, tags);
     ExitCode.success.code;
   }
 
-  Future<void> getQuestions([int? limit = 5, int? id]) async {
-    final res = await dio.get(api.get(limit: limit, id: id));
+  Future<void> getQuestions([
+    int? limit = 5,
+    int? id,
+    List<String>? tags,
+  ]) async {
+    final res = await dio.get(api.get(limit: limit, id: id, tags: tags));
     var question = Question.fromJson(res.data);
     log.question(question, limit);
   }
