@@ -25,7 +25,7 @@ class Api {
     required String inTitle,
     String? order = 'desc',
     String? sort = 'activity',
-    int? limit,
+    int? limit = 0,
     List<String>? tags = const [],
   }) {
     if (limit != 0 && tags == null) {

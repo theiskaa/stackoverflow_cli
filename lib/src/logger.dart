@@ -36,15 +36,6 @@ class Logger {
   Timer? _timer;
   int _index = 0;
 
-  /// Flushes internal message queue.
-  void flush([Function(String?)? print]) {
-    final writeln = print ?? info;
-    for (final message in _queue) {
-      writeln(message);
-    }
-    _queue.clear();
-  }
-
   /// Writes info message to stdout.
   void info(String? message) => stdout.writeln(message);
 
@@ -95,12 +86,6 @@ class Logger {
 
   /// Writes success message to stdout.
   void success(String? message) => stdout.writeln(lightGreen.wrap(message));
-
-  /// Prompts user and returns response.
-  String prompt(String? message) {
-    stdout.write('$message');
-    return stdin.readLineSync() ?? '';
-  }
 
   void question(Question question, [var questionLength = 5]) {
     var rightTermine = questionLength > 1 ? 'questions' : 'question';
