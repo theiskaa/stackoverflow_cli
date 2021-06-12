@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:io/io.dart';
-import 'package:scli/src/commands/sc_command.dart';
+import 'package:scli/src/sc_command_helper.dart';
 import 'package:scli/src/models/question.dart';
 
 class Get extends Command<int?> with SCLIcommandHelper {
@@ -53,8 +54,6 @@ class Get extends Command<int?> with SCLIcommandHelper {
       limit = 1;
       id = int.parse(argResults?['id']);
     } else {
-      print(argResults?['tag']);
-
       // Set right question tags.
       if (argResults?['tag'].isNotEmpty) {
         tags = argResults?['tag'];
@@ -68,7 +67,7 @@ class Get extends Command<int?> with SCLIcommandHelper {
     }
 
     await getQuestions(limit, id, tags);
-    ExitCode.success.code;
+    exit(ExitCode.success.code);
   }
 
   Future<void> getQuestions([
