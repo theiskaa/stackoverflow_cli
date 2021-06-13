@@ -89,23 +89,28 @@ class Logger {
 
   void question(Question question, [var questionLength = 5]) {
     var rightTermine = questionLength > 1 ? 'questions' : 'question';
-    stdout.write(
-      '''
-
-    ${lightMagenta.wrap('Found $questionLength $rightTermine:')}
-    ''',
-    );
+    var vl = '${white.wrap('|')}';
+    empty();
+    stdout
+        .write('${lightMagenta.wrap('Found $questionLength $rightTermine:')}');
     for (var i = 0; i < questionLength; i++) {
       var id = '${lightYellow.wrap('@${question.items![i].questionId}')}';
       var title = '${lightGreen.wrap('"${question.items![i].title}"')}';
       var link = '${lightBlue.wrap('${question.items![i].link}')}';
       var tags = '${lightCyan.wrap('${question.items?[i].tags}')}';
+      var isAnswered = question.items![i].isAnswered!
+          ? lightGreen.wrap('Answered')
+          : lightRed.wrap('Not answered');
+      var answers = '${lightMagenta.wrap('${question.items![i].answerCount}')}';
+      var score = '${lightMagenta.wrap('${question.items![i].score}')}';
       line();
       stdout.write(
         '''
       $id - $title
       Tags: $tags
-      See more: $link
+
+      --> $isAnswered $vl Answers: $answers $vl Score: $score
+      ${white.wrap('See more')}: $link
         ''',
       );
     }
@@ -113,7 +118,9 @@ class Logger {
 
   void line() {
     empty();
-    stdout.write('---------------------------------------------');
+    stdout.write(
+      '${black.wrap('------------------------------------------------------------------')}',
+    );
     empty();
   }
 
