@@ -40,7 +40,7 @@ To get help about concrete command:
 scli help <command name> 
 ```
 
-#### Get command usage:
+### Get command usage:
 
 Get questions (Would get excatly 5 question).
 ```console
@@ -53,7 +53,7 @@ scli get --tag flutter --limit 4
 ```
  <img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/get.png" alt="Get command result">
 
-#### Search command usage:
+### Search command usage:
 It would search question by gave text, and log avaiable questions.
 ```console
 scli search <Search text here>
