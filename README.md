@@ -1,5 +1,18 @@
 # Scli
-StackOverflow under your fingers <3 Made with Dart lang.
+A command line application for [StackOverflow](https://stackoverflow.com)
+
+## Installing
+The scli are not available yet to install from homebrew or any other package.
+So then we have to clone repo first of all.
+#### Then activate it:
+```console
+pub global activate --source path <repo path here>
+```
+After the activating, we have to export the path of pub cache.
+add it to your `.bash_profile`/`.bashrc maybe`.
+```
+export PATH="$PATH":”HOME/.pub-cache/bin"
+```
 
 ## Available functionalities:
 - **Get questions**
@@ -38,7 +51,7 @@ It would get newest questions from [flutter] tag and getted questions length wou
 ```console
 scli get --tag flutter --limit 4
 ```
- <img width="1000" src="https://raw.githubusercontent.com/theiskaa/stackoverflow_cli/develop/assets/get.png?token=AOCUPZJHI4ZMZRJ7TAWCEU3AZBAOO" alt="Get command result">
+ <img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/get.png" alt="Get command result">
 
 #### Search command usage:
 It would search question by gave text, and log avaiable questions.
@@ -50,7 +63,7 @@ It would search questions about "Design patterns" by [flutter] tag and would dis
 ```console
 scli search "Design patterns" --tag dart --limit 2
 ```
-<img width="1000" src="https://raw.githubusercontent.com/theiskaa/stackoverflow_cli/develop/assets/search.png?token=AOCUPZPW25A7E3VXGF2MRCLAZBAZY" alt="Get command result">
+<img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/search.png" alt="Get command result">
 
 ---
 
