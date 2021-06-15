@@ -2,7 +2,7 @@
 A command line application for [StackOverflow](https://stackoverflow.com)
 
 ## Installing
-The scli are not available yet to install from homebrew or any other package.
+The scli are not available yet to install from homebrew or any other package manager.
 So then we have to clone repo first of all.
 #### Then activate it:
 ```console
@@ -11,7 +11,7 @@ pub global activate --source path <repo path here>
 After the activating, we have to export the path of pub cache.
 add it to your `.bash_profile`/`.bashrc maybe`.
 ```
-export PATH="$PATH":”HOME/.pub-cache/bin"
+export PATH="$PATH":"HOME/.pub-cache/bin"
 ```
 
 ## Available functionalities:
