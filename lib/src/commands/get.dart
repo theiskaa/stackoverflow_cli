@@ -1,13 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:args/command_runner.dart';
 import 'package:io/io.dart';
+import 'package:dio/dio.dart';
+import 'package:args/command_runner.dart';
+
 import 'package:scli/src/sc_command_helper.dart';
 import 'package:scli/src/models/question.dart';
 
 class Get extends Command<int?> with SCLIcommandHelper {
-  Get() {
+  @override
+  Dio dio;
+
+  Get(this.dio) {
     argParser
       ..addFlag(
         'all',

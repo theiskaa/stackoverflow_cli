@@ -2,12 +2,16 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:dio/dio.dart';
 import 'package:io/io.dart';
 import 'package:scli/src/sc_command_helper.dart';
 import 'package:scli/src/models/question.dart';
 
 class Search extends Command<int?> with SCLIcommandHelper {
-  Search() {
+  @override
+  Dio dio;
+
+  Search(this.dio) {
     argParser
       ..addMultiOption(
         'tag',

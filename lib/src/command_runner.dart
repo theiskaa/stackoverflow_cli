@@ -1,5 +1,6 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:dio/dio.dart';
 import 'package:io/io.dart';
 
 import 'commands/get.dart';
@@ -9,6 +10,9 @@ import 'version.dart';
 
 /// SCLI command runner have been using for cli runnin'.
 class CLICommandRunner extends CommandRunner<int?> with SCLIcommandHelper {
+  @override
+  Dio dio = Dio();
+
   CLICommandRunner()
       : super(
           'scli',
@@ -23,8 +27,8 @@ class CLICommandRunner extends CommandRunner<int?> with SCLIcommandHelper {
     );
 
     // Set available commands.
-    addCommand(Get());
-    addCommand(Search());
+    addCommand(Get(dio));
+    addCommand(Search(dio));
   }
 
   @override
