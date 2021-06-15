@@ -38,8 +38,7 @@ It would get newest questions from [flutter] tag and getted questions length wou
 ```console
 scli get --tag flutter --limit 4
 ```
-Result: 
-
+ <img width="1000" src="https://raw.githubusercontent.com/theiskaa/stackoverflow_cli/develop/assets/get.png?token=AOCUPZJHI4ZMZRJ7TAWCEU3AZBAOO" alt="Get command result">
 
 #### Search command usage:
 It would search question by gave text, and log avaiable questions.
@@ -51,7 +50,7 @@ It would search questions about "Design patterns" by [flutter] tag and would dis
 ```console
 scli search "Design patterns" --tag dart --limit 2
 ```
-Result: 
+<img width="1000" src="https://raw.githubusercontent.com/theiskaa/stackoverflow_cli/develop/assets/search.png?token=AOCUPZPW25A7E3VXGF2MRCLAZBAZY" alt="Get command result">
 
 ---
 
