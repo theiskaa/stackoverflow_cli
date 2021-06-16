@@ -14,7 +14,7 @@ void main() {
   setUpAll(() => sclIcommandHelper = TestCommand());
 
   test('[SCLIcommandHelper] - should contain inital properties', () {
-    expect(sclIcommandHelper.api.runtimeType, Api().runtimeType);
+    expect(sclIcommandHelper.apiGen.runtimeType, ApiGen().runtimeType);
     expect(sclIcommandHelper.dio.runtimeType, Dio().runtimeType);
     expect(sclIcommandHelper.log.runtimeType, Logger().runtimeType);
   });

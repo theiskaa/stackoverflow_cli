@@ -80,7 +80,7 @@ class Get extends Command<int?> with SCLIcommandHelper {
     int? id,
     List<String>? tags,
   ]) async {
-    final res = await dio.get(api.get(limit: limit, id: id, tags: tags));
+    final res = await dio.get(apiGen.get(limit: limit, id: id, tags: tags));
     var question = Question.fromJson(res.data);
     log.question(question, limit);
   }

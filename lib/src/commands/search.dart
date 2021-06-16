@@ -51,6 +51,7 @@ class Search extends Command<int?> with SCLIcommandHelper {
 
     log.progress('Searching for: "$searchText"');
     await searchQuestions(searchText, limit, tags);
+    exit(ExitCode.success.code);
   }
 
   Future<void> searchQuestions(
@@ -58,7 +59,7 @@ class Search extends Command<int?> with SCLIcommandHelper {
     int? limit,
     List<String>? tags,
   ]) async {
-    final res = await dio.get(api.search(
+    final res = await dio.get(apiGen.search(
       inTitle: inTitle!,
       limit: limit,
       tags: tags,

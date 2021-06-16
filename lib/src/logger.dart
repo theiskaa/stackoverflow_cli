@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:io/ansi.dart';
 import 'package:scli/src/models/question.dart';
 
+import 'models/answer.dart';
+
 class Logger {
   static const List<String> _appleProgressAnimation = [
     '⠋',
@@ -91,8 +93,9 @@ class Logger {
     var rightTermine = questionLength > 1 ? 'questions' : 'question';
     var vl = '${white.wrap('|')}';
     empty();
-    stdout
-        .write('${lightMagenta.wrap('Found $questionLength $rightTermine:')}');
+    stdout.write(styleBold.wrap(
+      '${lightMagenta.wrap('Found $questionLength $rightTermine:')}',
+    ));
     for (var i = 0; i < questionLength; i++) {
       var id = '${lightYellow.wrap('@${question.items![i].questionId}')}';
       var title = '${lightGreen.wrap('"${question.items![i].title}"')}';
@@ -116,10 +119,41 @@ class Logger {
     }
   }
 
+  void answer(Answer answer, [int? answersLength = 1]) {
+    var rightTermine = answersLength! > 1 ? 'answers' : 'answer';
+    var vl = styleBlink.wrap('${white.wrap('|')}');
+
+    empty();
+    stdout.write(styleBold.wrap(
+      '${lightMagenta.wrap('Found $answersLength $rightTermine:')}',
+    ));
+    for (var i = 0; i < answersLength; i++) {
+      var id = '${lightYellow.wrap('#${answer.items?[i].questionId}')}';
+      var owner = '${yellow.wrap('"${answer.items?[i].owner?.displayName}"')}'
+          .replaceAll('"', '');
+      var score = '${lightMagenta.wrap('${answer.items?[i].score}')}';
+      var link =
+          '${lightBlue.wrap('https://stackoverflow.com/a/${answer.items?[i].questionId}/${answer.items?[i].answerId}')}';
+      var isAccepted = answer.items![i].isAccepted!
+          ? lightGreen.wrap('${styleBold.wrap('Accepted')}')
+          : lightRed.wrap('${styleBold.wrap('Not accepted')}');
+      line();
+      stdout.write(
+        '''
+      $id $vl Answerer: - $owner
+      --> $isAccepted $vl Score: $score
+      ${white.wrap('See more')}: $link
+        ''',
+      );
+    }
+  }
+
   void line() {
     empty();
     stdout.write(
-      '${black.wrap('------------------------------------------------------------------')}',
+      styleBold.wrap(black.wrap(
+        '------------------------------------------------------------------',
+      )),
     );
     empty();
   }

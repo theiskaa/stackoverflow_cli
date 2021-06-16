@@ -1,5 +1,5 @@
 /// API class which provides customizable api urls.
-class Api {
+class ApiGen {
   static const questions = 'https://api.stackexchange.com/2.2/questions?';
   static const searchUrl = 'https://api.stackexchange.com/2.2/search?';
 
@@ -38,5 +38,15 @@ class Api {
       return '${searchUrl}pagesize=$limit&order=$order&sort=$sort&tagged=$tags&intitle=$inTitle&site=stackoverflow';
     }
     return '${searchUrl}order=$order&sort=$sort&intitle=$inTitle&site=stackoverflow';
+  }
+
+  // Ger right answer{id} api url.
+  String answers({
+    required String qID,
+    String? order = 'desc',
+    String? sort = 'activity',
+    int? limit = 0,
+  }) {
+    return '${questions.replaceAll('?', '/')}$qID/answers?order=$order&sort=$sort&site=stackoverflow';
   }
 }

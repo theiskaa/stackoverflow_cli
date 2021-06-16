@@ -2,6 +2,7 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:io/io.dart';
+import 'package:scli/src/commands/view.dart';
 
 import 'commands/get.dart';
 import 'sc_command_helper.dart';
@@ -29,6 +30,7 @@ class CLICommandRunner extends CommandRunner<int?> with SCLIcommandHelper {
     // Set available commands.
     addCommand(Get(dio));
     addCommand(Search(dio));
+    addCommand(View(dio));
   }
 
   @override
