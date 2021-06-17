@@ -1,8 +1,5 @@
-# Scli
+# Scli - StackOverflow CLI
 
- <img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-answer.gif" alt="Overview of view and search command">
-
----
 ## Installing
 The scli are not available yet to install from homebrew or any other package manager.
 So then we have to clone repo first of all.
@@ -53,7 +50,7 @@ It would get newest questions from [flutter] tag and getted questions length wou
 ```console
 scli get --tag flutter --limit 4
 ```
- <img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/get.png" alt="Get command result">
+ <img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/get.png" alt="Get command result">
 
 ### Search command usage:
 It would search question by gave text, and log avaiable questions.
@@ -65,14 +62,14 @@ It would search questions about "Design patterns" by [flutter] tag and would dis
 ```console
 scli search "Design patterns" --tag dart --limit 2
 ```
-<img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/search.png" alt="Search command result">
+<img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/search.png" alt="Search command result">
 
 ### View command usage:
 It would get answers under question you gave as ID.
 ```console
 scli view --answer <question-id>
 ```
-<img width="1000" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-answers.png" alt="View command result">
+<img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-answers.png" alt="View command result">
 
 ---
 
