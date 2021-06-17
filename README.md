@@ -65,11 +65,18 @@ scli search "Design patterns" --tag dart --limit 2
 <img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/search.png" alt="Search command result">
 
 ### View command usage:
-It would get answers under question you gave as ID.
+
+#### View answers of concrete question:
 ```console
-scli view --answer <question-id>
+scli view answers <question-id>
 ```
-<img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-answers.png" alt="View command result">
+<img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-answers.png" alt="View answers command result">
+
+#### View comments of concrete question:
+```console
+scli view comments <question-id>
+```
+<img width="800" src="https://github.com/theiskaa/stackoverflow_cli/blob/develop/assets/view-comments.png" alt="View comments command result">
 
 ---
 

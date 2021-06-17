@@ -80,8 +80,8 @@ void main() {
     test('alert', () => logger.alert('alert'));
     test('warn', () => logger.warn('warn'));
     test('success', () => logger.success('success'));
-    test('question', () => logger.question(question, 1));
-    test('question', () => logger.answer(answer, 1));
+    test('question', () => logger.questions(question, 1));
+    test('question', () => logger.answers(answer, 1));
     test('line', () => logger.line());
     test('empty', () => logger.empty());
   });

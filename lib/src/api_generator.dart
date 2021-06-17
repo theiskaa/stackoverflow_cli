@@ -1,9 +1,9 @@
-/// API class which provides customizable api urls.
+/// Class which provides customizable API urls.
 class ApiGen {
   static const questions = 'https://api.stackexchange.com/2.2/questions?';
   static const searchUrl = 'https://api.stackexchange.com/2.2/search?';
 
-  /// Get right quesiton's api url.
+  /// Get right quesiton's API url.
   String get({
     String? order = 'desc',
     String? sort = 'activity',
@@ -40,13 +40,23 @@ class ApiGen {
     return '${searchUrl}order=$order&sort=$sort&intitle=$inTitle&site=stackoverflow';
   }
 
-  // Ger right answer{id} api url.
-  String answers({
+  // Get question's answer API url.
+  String getAnswers({
     required String qID,
     String? order = 'desc',
     String? sort = 'activity',
     int? limit = 0,
   }) {
     return '${questions.replaceAll('?', '/')}$qID/answers?order=$order&sort=$sort&site=stackoverflow';
+  }
+
+  // Ger right answer{id} api url.
+  String getComments({
+    required String qID,
+    String? order = 'desc',
+    String? sort = 'creation',
+    int? limit = 0,
+  }) {
+    return '${questions.replaceAll('?', '/')}$qID/comments?order=$order&sort=$sort&site=stackoverflow';
   }
 }

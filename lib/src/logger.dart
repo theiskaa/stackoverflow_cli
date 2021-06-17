@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:io/ansi.dart';
+import 'package:scli/src/models/comment.dart';
 import 'package:scli/src/models/question.dart';
 
 import 'models/answer.dart';
@@ -89,7 +90,7 @@ class Logger {
   /// Writes success message to stdout.
   void success(String? message) => stdout.writeln(lightGreen.wrap(message));
 
-  void question(Question question, [var questionLength = 5]) {
+  void questions(Question question, [var questionLength = 5]) {
     var rightTermine = questionLength > 1 ? 'questions' : 'question';
     var vl = '${white.wrap('|')}';
     empty();
@@ -119,7 +120,7 @@ class Logger {
     }
   }
 
-  void answer(Answer answer, [int? answersLength = 1]) {
+  void answers(Answer answer, [int? answersLength = 1]) {
     var rightTermine = answersLength! > 1 ? 'answers' : 'answer';
     var vl = styleBlink.wrap('${white.wrap('|')}');
 
@@ -142,6 +143,31 @@ class Logger {
         '''
       $id $vl Answerer: - $owner
       --> $isAccepted $vl Score: $score
+      ${white.wrap('See more')}: $link
+        ''',
+      );
+    }
+  }
+
+  void comments(Comment comment, [int? commentsLength = 1]) {
+    var rightTermine = commentsLength! > 1 ? 'comments' : 'comment';
+    var vl = styleBlink.wrap('${white.wrap('|')}');
+
+    empty();
+    stdout.write(styleBold.wrap(
+      '${lightMagenta.wrap('Found $commentsLength $rightTermine:')}',
+    ));
+    for (var i = 0; i < commentsLength; i++) {
+      var id = '${lightYellow.wrap('#${comment.items?[i].commentId}')}';
+      var owner = '${yellow.wrap('"${comment.items?[i].owner?.displayName}"')}'
+          .replaceAll('"', '');
+      var score = '${lightMagenta.wrap('${comment.items?[i].score}')}';
+      var link =
+          '${lightBlue.wrap('https://stackoverflow.com/questions/${comment.items?[i].postId}')}';
+      line();
+      stdout.write(
+        '''
+      $id $vl Score: $score $vl Commenter: - $owner
       ${white.wrap('See more')}: $link
         ''',
       );
