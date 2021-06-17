@@ -9,6 +9,6 @@
 /// ```
 library scli;
 
-export 'package:scli/src/api.dart';
+export 'package:scli/src/api_generator.dart';
 export 'package:scli/src/command_runner.dart';
 export 'package:scli/src/io.dart';

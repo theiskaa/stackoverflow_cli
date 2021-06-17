@@ -1,4 +1,5 @@
 import 'package:scli/src/logger.dart';
+import 'package:scli/src/models/answer.dart';
 import 'package:scli/src/models/question.dart';
 import 'package:test/test.dart';
 
@@ -35,13 +36,40 @@ const jsonQuestion = {
   'quota_remaining': 9984
 };
 
+const jsonAnswer = {
+  'items': [
+    {
+      'owner': {
+        'reputation': 507,
+        'user_id': 14247462,
+        'user_type': 'registered',
+        'profile_image': 'https://i.stack.imgur.com/FvNOn.png?s=128&g=1',
+        'display_name': 'theiskaa',
+        'link': 'https://stackoverflow.com/users/14247462/theiskaa'
+      },
+      'is_accepted': true,
+      'score': 1,
+      'last_activity_date': 1623182663,
+      'creation_date': 1623182663,
+      'answer_id': 67893903,
+      'question_id': 67893709,
+      'content_license': 'CC BY-SA 4.0'
+    }
+  ],
+  'has_more': false,
+  'quota_max': 10000,
+  'quota_remaining': 9947
+};
+
 void main() {
   late Logger logger;
   late Question question;
+  late Answer answer;
 
   setUpAll(() {
     logger = Logger();
     question = Question.fromJson(jsonQuestion);
+    answer = Answer.fromJson(jsonAnswer);
   });
 
   group('[Logger]', () {
@@ -53,6 +81,7 @@ void main() {
     test('warn', () => logger.warn('warn'));
     test('success', () => logger.success('success'));
     test('question', () => logger.question(question, 1));
+    test('question', () => logger.answer(answer, 1));
     test('line', () => logger.line());
     test('empty', () => logger.empty());
   });

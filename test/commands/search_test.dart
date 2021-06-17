@@ -6,7 +6,7 @@ import 'package:scli/scli.dart';
 
 void main() {
   late DioAdapter dioAdapter;
-  late Api api;
+  late ApiGen api;
   late CLICommandRunner commandRunner;
 
   var questionBodyForDefault = {
@@ -77,7 +77,7 @@ void main() {
   setUp(() {
     dioAdapter = DioAdapter();
 
-    api = Api();
+    api = ApiGen();
     commandRunner = CLICommandRunner();
     commandRunner.dio.httpClientAdapter = dioAdapter;
   });
