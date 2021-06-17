@@ -1,1 +1,1 @@
-const cliVersion = 'v1.0.1';
+const cliVersion = 'v1.0.2';
