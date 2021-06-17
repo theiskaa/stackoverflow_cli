@@ -2,7 +2,7 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:dio/dio.dart';
 import 'package:io/io.dart';
-import 'package:scli/src/commands/view.dart';
+import 'package:scli/src/commands/view/view.dart';
 
 import 'commands/get.dart';
 import 'sc_command_helper.dart';

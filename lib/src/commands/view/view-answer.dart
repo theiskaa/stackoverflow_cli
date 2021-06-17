@@ -7,46 +7,29 @@ import 'package:io/io.dart';
 import 'package:scli/src/models/answer.dart';
 import 'package:scli/src/sc_command_helper.dart';
 
-class View extends Command<int?> with SCLIcommandHelper {
+class ViewAnswer extends Command<int?> with SCLIcommandHelper {
   @override
   Dio dio;
 
-  View(this.dio) {
-    argParser.addMultiOption(
-      'answer',
-      abbr: 'a',
-      help: """
-      View answers by providing question's id.
-      You can use it like:
-      "scli view --answer <question-id>"
-      """,
-    );
-  }
-  @override
-  String get description => '''
-
-  View answers/comments of concrete question.
-  Able to use just for view answers.
-
-  ''';
+  ViewAnswer(this.dio);
 
   @override
-  String get name => 'view';
+  String get description => 'View answers of concrete question.';
+
+  @override
+  String get name => 'answer';
 
   @override
   FutureOr<int?> run() async {
-    if (argResults?['answer'].isEmpty) {
+    if (argResults!.arguments.isEmpty) {
       log.error(''''
       Error: Please provide a question id to get right answers.
-
-      To learn more just run "scli help view"
       ''');
       exit(ExitCode.noInput.code);
     }
 
     log.progress('Loading answers');
-
-    var questionID = argResults?['answer'][0];
+    var questionID = argResults!.arguments[0];
 
     await viewAnswers(questionID);
     exit(ExitCode.success.code);

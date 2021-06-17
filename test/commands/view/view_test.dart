@@ -80,14 +80,14 @@ void main() {
     commandRunner.dio.httpClientAdapter = dioAdapter;
   });
 
-  group('[Search]', () {
-    test('test as default', () async {
+  group('[View]', () {
+    test('test answer view ', () async {
       dioAdapter.onGet(
         api.answers(qID: '66542197'),
         (request) => request.reply(200, jsonAnswersList),
       );
 
-      var result = await commandRunner.run(['view', '--answer', '66542197']);
+      var result = await commandRunner.run(['view', 'answer', '66542197']);
       expect(result, equals(ExitCode.success.code));
     });
   });
