@@ -18,6 +18,7 @@ const expectedPrintLogs = [
       'Available commands:\n'
       '  get        Get newest questions. As default would get exectly 5 question from general questions timeline.\n'
       '  search     Search question. Require to provide a search text.\n'
+      '  view     View answers/comments of concrete question\n'
       '\n'
       'Run "scli help <command>" for more information about a command.'
 ];

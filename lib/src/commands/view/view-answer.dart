@@ -7,17 +7,17 @@ import 'package:io/io.dart';
 import 'package:scli/src/models/answer.dart';
 import 'package:scli/src/sc_command_helper.dart';
 
-class ViewAnswer extends Command<int?> with SCLIcommandHelper {
+class ViewAnswers extends Command<int?> with SCLIcommandHelper {
   @override
   Dio dio;
 
-  ViewAnswer(this.dio);
+  ViewAnswers(this.dio);
 
   @override
   String get description => 'View answers of concrete question.';
 
   @override
-  String get name => 'answer';
+  String get name => 'answers';
 
   @override
   FutureOr<int?> run() async {
@@ -36,8 +36,8 @@ class ViewAnswer extends Command<int?> with SCLIcommandHelper {
   }
 
   Future<void> viewAnswers(String qID, [int limit = 0]) async {
-    final res = await dio.get(apiGen.answers(qID: qID));
+    final res = await dio.get(apiGen.getAnswers(qID: qID));
     var answer = Answer.fromJson(res.data);
-    log.answer(answer, answer.items?.length);
+    log.answers(answer, answer.items?.length);
   }
 }

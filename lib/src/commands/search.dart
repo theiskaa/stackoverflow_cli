@@ -65,6 +65,6 @@ class Search extends Command<int?> with SCLIcommandHelper {
       tags: tags,
     ));
     var question = Question.fromJson(res.data);
-    log.question(question, question.items?.length);
+    log.questions(question, question.items?.length);
   }
 }

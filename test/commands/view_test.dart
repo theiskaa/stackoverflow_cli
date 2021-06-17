@@ -81,13 +81,23 @@ void main() {
   });
 
   group('[View]', () {
-    test('test answer view ', () async {
+    test('test answers view ', () async {
       dioAdapter.onGet(
-        api.answers(qID: '66542197'),
+        api.getAnswers(qID: '66542197'),
         (request) => request.reply(200, jsonAnswersList),
       );
 
-      var result = await commandRunner.run(['view', 'answer', '66542197']);
+      var result = await commandRunner.run(['view', 'answers', '66542197']);
+      expect(result, equals(ExitCode.success.code));
+    });
+
+    test('test comments view ', () async {
+      dioAdapter.onGet(
+        api.getComments(qID: '66542197'),
+        (request) => request.reply(200, jsonAnswersList),
+      );
+
+      var result = await commandRunner.run(['view', 'comments', '66542197']);
       expect(result, equals(ExitCode.success.code));
     });
   });
