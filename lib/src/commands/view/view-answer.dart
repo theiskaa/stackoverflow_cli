@@ -12,8 +12,11 @@ class ViewAnswers extends Command<int?> with SCLIcommandHelper {
   Dio dio;
 
   ViewAnswers(this.dio) {
-    argParser.addOption('limit',
-        abbr: 'l', help: 'Provide a limit for getted answers');
+    argParser.addOption(
+      'limit',
+      abbr: 'l',
+      help: 'Provide a limit for getted answers',
+    );
   }
 
   @override

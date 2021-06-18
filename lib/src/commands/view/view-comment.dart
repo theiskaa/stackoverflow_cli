@@ -11,7 +11,13 @@ class ViewComments extends Command<int?> with SCLIcommandHelper {
   @override
   Dio dio;
 
-  ViewComments(this.dio);
+  ViewComments(this.dio) {
+    argParser.addOption(
+      'limit',
+      abbr: 'l',
+      help: 'Provide a limit for getted comments',
+    );
+  }
 
   @override
   String get description => 'View comments of concrete question.';
@@ -30,13 +36,15 @@ class ViewComments extends Command<int?> with SCLIcommandHelper {
 
     log.progress('Loading comments');
     var questionID = argResults!.arguments[0];
+    var limit =
+        (argResults?['limit'] != null) ? int.parse(argResults?['limit']) : 0;
 
-    await viewComments(questionID);
+    await viewComments(questionID, limit);
     exit(ExitCode.success.code);
   }
 
   Future<void> viewComments(String qID, [int limit = 0]) async {
-    final res = await dio.get(apiGen.getComments(qID: qID));
+    final res = await dio.get(apiGen.getComments(qID: qID, limit: limit));
     var comment = Comment.fromJson(res.data);
     log.comments(comment, comment.items?.length);
   }

@@ -82,7 +82,7 @@ void main() {
 
   group('[View]', () {
     group('(Answers)', () {
-      test('test default view ', () async {
+      test('test default view', () async {
         dioAdapter.onGet(
           api.getAnswers(qID: '66542197'),
           (request) => request.reply(200, jsonAnswersList),
@@ -106,13 +106,24 @@ void main() {
     });
 
     group('(Comments)', () {
-      test('test comments view ', () async {
+      test('test default view', () async {
         dioAdapter.onGet(
           api.getComments(qID: '66542197'),
           (request) => request.reply(200, jsonAnswersList),
         );
 
         var result = await commandRunner.run(['view', 'comments', '66542197']);
+        expect(result, equals(ExitCode.success.code));
+      });
+      test('test view with limit', () async {
+        dioAdapter.onGet(
+          api.getComments(qID: '66542197', limit: 1),
+          (request) => request.reply(200, jsonAnswersList),
+        );
+
+        var result = await commandRunner.run(
+          ['view', 'comments', '66542197', '--limit', '1'],
+        );
         expect(result, equals(ExitCode.success.code));
       });
     });

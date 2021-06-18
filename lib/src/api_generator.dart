@@ -60,6 +60,9 @@ class ApiGen {
     String? sort = 'creation',
     int? limit = 0,
   }) {
+    if (limit != 0) {
+      return '${questions.replaceAll('?', '/')}$qID/comments?pagesize=$limit&order=$order&sort=$sort&site=stackoverflow';
+    }
     return '${questions.replaceAll('?', '/')}$qID/comments?order=$order&sort=$sort&site=stackoverflow';
   }
 }
