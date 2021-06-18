@@ -47,6 +47,9 @@ class ApiGen {
     String? sort = 'activity',
     int? limit = 0,
   }) {
+    if (limit != 0) {
+      return '${questions.replaceAll('?', '/')}$qID/answers?pagesize=$limit&order=$order&sort=$sort&site=stackoverflow';
+    }
     return '${questions.replaceAll('?', '/')}$qID/answers?order=$order&sort=$sort&site=stackoverflow';
   }
 

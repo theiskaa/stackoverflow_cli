@@ -11,7 +11,10 @@ class ViewAnswers extends Command<int?> with SCLIcommandHelper {
   @override
   Dio dio;
 
-  ViewAnswers(this.dio);
+  ViewAnswers(this.dio) {
+    argParser.addOption('limit',
+        abbr: 'l', help: 'Provide a limit for getted answers');
+  }
 
   @override
   String get description => 'View answers of concrete question.';
@@ -30,13 +33,15 @@ class ViewAnswers extends Command<int?> with SCLIcommandHelper {
 
     log.progress('Loading answers');
     var questionID = argResults!.arguments[0];
+    var limit =
+        (argResults?['limit'] != null) ? int.parse(argResults?['limit']) : 0;
 
-    await viewAnswers(questionID);
+    await viewAnswers(questionID, limit);
     exit(ExitCode.success.code);
   }
 
   Future<void> viewAnswers(String qID, [int limit = 0]) async {
-    final res = await dio.get(apiGen.getAnswers(qID: qID));
+    final res = await dio.get(apiGen.getAnswers(qID: qID, limit: limit));
     var answer = Answer.fromJson(res.data);
     log.answers(answer, answer.items?.length);
   }
